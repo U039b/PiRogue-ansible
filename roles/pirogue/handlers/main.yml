@@ -11,4 +11,9 @@
 - name: reload locales
   command: locale-gen
     
-    
+- name: restart fan-control
+  systemd:
+    name: "fan-control"
+    enabled: yes
+    state: "restarted"
+    daemon_reload: yes
