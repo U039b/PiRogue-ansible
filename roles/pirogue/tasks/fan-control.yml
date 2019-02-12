@@ -1,0 +1,15 @@
+---
+
+- name: python3-rpi.gpio is installed
+  apt:
+    pkg: "python3-rpi.gpio"
+    state: "present"
+    update_cache: yes
+    cache_valid_time: 10800
+    
+- name: Add the service to control a fan connected on GPIO 11 (be careful it needs some electronic stuff to protect your pi parts)
+  file:
+    src: /usr/share/PiRogue/fan-control/fan-control.service
+    dest: /etc/systemd/system/fan-control.service
+    state: link
+  notify: restart fan-control
